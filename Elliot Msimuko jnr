@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #ffe6e6;
+    color: #333;
+    text-align: center;
+    overflow-x: hidden;
+  }
+
+  header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #ffccd5, #ffe6e6);
+  }
+
+  h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3em;
+    color: #ff4d6d;
+    margin: 0;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #ff2a4d;
+  }
+
+  .gift-section {
+    display: none;
+    padding: 50px 20px;
+    background-color: #fff0f5;
+  }
+
+  .gift-box {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    background-color: #ff4d6d;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
+
+  .gift-box.open {
+    transform: scale(1.2) rotate(15deg);
+  }
+
+  .message {
+    font-size: 1.5em;
+    color: #ff4d6d;
+    margin-top: 20px;
+  }
+
+  /* Memory carousel */
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .carousel img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    scroll-snap-align: start;
+  }
+
+  /* Hearts animation */
+  .heart {
+    position: absolute;
+    color: #ff4d6d;
+    font-size: 2em;
+    animation: float 3s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity:1; }
+    100% { transform: translateY(-600px) translateX(50px) rotate(360deg); opacity:0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>For the Love of My Life ❤️</h1>
+  <button id="openGiftBtn">Open Your Gift</button>
+</header>
+
+<section class="gift-section" id="giftSection">
+  <div class="gift-box" id="giftBox">🎁</div>
+  <div class="message" id="giftMessage"></div>
+</section>
+
+<section class="memories">
+  <h2 style="color:#ff4d6d;">Our Memories</h2>
+  <div class="carousel">
+    <img src="https://via.placeholder.com/250x250.png?text=Memory+1" alt="Memory 1">
+    <img src="https://via.placeholder.com/250x250.png?text=Memory+2" alt="Memory 2">
+    <img src="https://via.placeholder.com/250x250.png?text=Memory+3" alt="Memory 3">
+  </div>
+</section>
+
+<script>
+  // Open gift section
+  const openBtn = document.getElementById('openGiftBtn');
+  const giftSection = document.getElementById('giftSection');
+  const giftBox = document.getElementById('giftBox');
+  const giftMessage = document.getElementById('giftMessage');
+
+  openBtn.addEventListener('click', () => {
+    giftSection.style.display = 'block';
+    giftSection.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  giftBox.addEventListener('click', () => {
+    giftBox.classList.add('open');
+    giftMessage.textContent = "I love you! Here's your surprise ❤️";
+    createHearts(20); // Create 20 floating hearts
+  });
+
+  // Hearts animation
+  function createHearts(num) {
+    for (let i = 0; i < num; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.fontSize = 16 + Math.random() * 24 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 3000);
+    }
+  }
+</script>
+
+</body>
+</html>
